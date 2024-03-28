@@ -4,11 +4,11 @@ function criarCard(filme) {
     
     const card = document.createElement('div')
     const titulo = document.createElement('h2')
-    titulo.textContent = filme.nome
-    
-
     const valor = document.createElement('button')
     valor.textContent = filme.valor_unitario
+    titulo.textContent = filme.nome
+ 
+ 
         
     card.append(titulo, valor)
 
@@ -42,7 +42,9 @@ const filme = {
 }
 
 
-postFilme(filme)
+
+
+// postFilme(filme)
 
 
 
