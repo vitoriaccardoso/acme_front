@@ -1,44 +1,55 @@
-import { getFilmes, getFilme, postFilme } from "./filmes.js"
+'use strict'
+import {getFilmes} from "./filmes.js"
 
-function criarCard(filme) {
-    
+console.table(await getFilmes())
+
+function criarCard (filme){
     const card = document.createElement('div')
+    card.classList.add('flex')
+    card.classList.add('flex-col')
+    card.classList.add('text-[#ECDDA2]')
+    card.classList.add('justify-center')
+    card.classList.add('cursor-pointer')
     const titulo = document.createElement('h2')
-    const valor = document.createElement('button')
-    const capa_filme = document.createElement('img')
-    valor.textContent = filme.valor_unitario
     titulo.textContent = filme.nome
-    capa_filme.src = filme.foto_capa
- 
-    // card.classList.add(
-    //     'flex'
-    // )
-    capa_filme.classList.add(
-        'h-56',
-        'mx-px',
-        'rounded-md',
-        'border-blue-800',
-        'flex',
-        'flex-row'
-    ) 
-    card.append(capa_filme, titulo)
-
-    return card
+    titulo.classList.add('bg-[#7A7A7A]')
+    titulo.classList.add('font-bold')
+    titulo.classList.add('text-center')
+    titulo.classList.add('mr-1')
+    titulo.classList.add('w-64')
+    titulo.classList.add('border-b-4')
+    titulo.classList.add('border-x-4')
+    titulo.classList.add('border-[#ECDDA2]')
+    const texto = document.createElement('p')
+    texto.textContent = filme.sinopse
+    texto.classList.add('w-72')
+    const preco = document.createElement('p')
+    preco.textContent = filme.valor_unitario
+    const capa = document.createElement('img')
+    capa.src = filme.foto_capa
+    capa.classList.add('h-92')
+    capa.classList.add('w-64')
+    capa.classList.add('border-t-4')
+    capa.classList.add('border-x-4')
+    capa.classList.add('border-[#ECDDA2]')
+    const dataLancamento = document.createElement('p')
+    dataLancamento.textContent = filme.data_lancamento
+    card.append(capa, titulo)
+    card.addEventListener('click',()=> {
+        window.location.href='../sobre.html?id='+filme.id
+    })
 }
-// console.log(card)
 
 async function preencherContainer(){
-    
     const container = document.querySelector('body')
+
     const filmes = await getFilmes()
 
     filmes.forEach(filme => {
-        const card = criarCard(filme)
-        container.appendChild(card)
+        criarCard(filme)
     })
-    
 }
 
-function
+
 
 preencherContainer()
